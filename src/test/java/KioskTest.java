@@ -1,5 +1,5 @@
 import org.example.Kiosk;
-import org.example.KioskImpl;
+import org.example.KioskPerform;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,32 +8,26 @@ import static org.mockito.Mockito.when;
 
 public class KioskTest {
     Kiosk mockedKiosk;
-    KioskImpl kiosk;
+    KioskPerform kioskPerform;
 
     @BeforeEach
     void setUp(){
         mockedKiosk = mock(Kiosk.class);
-        kiosk = new KioskImpl();
-        kiosk.setKiosk(mockedKiosk);
+        kioskPerform = new KioskPerform();
+        kioskPerform.setKiosk(mockedKiosk);
     }
     @Test
     void orderTest(){
         String menu = "싸이버거";
-        when(mockedKiosk.order(menu)).thenReturn(true);
-        assertTrue(mockedKiosk.order(menu));
+        when(mockedKiosk.order(menu)).thenReturn(menu + "가 주문됨.");
+        assertEquals(menu + "가 주문됨.", kioskPerform.doOrder(menu));
     }
+
     @Test
     void orderCancelTest(){
         String menu = "싸이버거";
-        Kiosk mockedKiosk = mock(Kiosk.class);
-        when(mockedKiosk.cancel(menu)).thenReturn(true);
-        assertTrue(mockedKiosk.cancel(menu));
-    }
-    @Test
-    void getOrderListTest(){
-        String order = mockedKiosk.getOrder();
-        when(mockedKiosk.getOrder()).thenReturn("주문 목록 : " + order);
-        assertEquals("주문 목록 : " + order, mockedKiosk.getOrder());
+        when(mockedKiosk.cancel(menu)).thenReturn(menu + "가 주문취소됨.");
+        assertEquals(menu + "가 주문취소됨.", kioskPerform.doCancel(menu));
     }
 }
 
