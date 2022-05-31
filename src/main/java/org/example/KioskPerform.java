@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class KioskPerform {
     private String menu;
     private Kiosk kiosk;
@@ -16,6 +18,10 @@ public class KioskPerform {
     public String doCancel(String menu) {
         this.menu = menu;
         return kiosk.cancel(menu);
+    }
+    public int doCalculate(String menu){
+        this.menu = menu;
+        return kiosk.calculate(menu);
     }
 }
 

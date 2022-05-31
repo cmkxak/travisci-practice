@@ -26,8 +26,14 @@ public class KioskTest {
     @Test
     void orderCancelTest(){
         String menu = "싸이버거";
-        when(mockedKiosk.cancel(menu)).thenReturn(menu + "가 주문취소됨.");
-        assertEquals(menu + "가 주문취소됨.", kioskPerform.doCancel(menu));
+        when(mockedKiosk.cancel(menu)).thenReturn(menu + "가 주문취소 됨.");
+        assertEquals(menu + "가 주문취소 됨.", kioskPerform.doCancel(menu));
+    }
+    @Test
+    void calculateTest(){
+        String menu = "싸이버거";
+        when(mockedKiosk.calculate("싸이버거")).thenReturn(4000);
+        assertEquals(4000, kioskPerform.doCalculate(menu));
     }
 }
 
